@@ -26,8 +26,12 @@ float shunt_to_Amp(int amp)
         }
 // shunt raw value to mv (163.8mV LSB (SD0):40μV) datasheet
         float amp1mv=(163.8/4096)*amp;
-// I have a 50A/75mv shunt so A on channel 1 is:
+// for my shunt the producer does not recomend to go above 80A, IC is able to measure up to 108 A :)
+// I have a 50A/75mv shunt so A on channel is:
         float Amp=amp1mv*50/75;
+// if you do not plan to use external shunt you are limited to 1.6 A / channel 
+// default A without external shunt R on device is 0.1 ohm comment line above and uncomment next line:
+//      float Amp=amp1mv*10
 return Amp;
 }
 
